@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// This class is responsible for the AI patrolling state
 public class Patrol : State
 {
     private int currentIndex;      // reference to the waypoints index counter
@@ -25,7 +26,7 @@ public class Patrol : State
 
     public override void Update()
     {
-        // check if npc agent has arrived to a waypoint
+        // check if AI agent has arrived to a waypoint
         if (agent.remainingDistance < 1)
         {
             // check if the npc has finished walking through all waypoints
@@ -36,6 +37,13 @@ public class Patrol : State
 
             // move the npc agent to waypoint at the current index count
             agent.SetDestination(GameEnvironment.Singleton.Checkpoints[currentIndex].transform.position);
+        }
+
+        // if AI saw the player, then exit patrol state and start chasing
+        if (CanSeePlayer())
+        {
+            nextState = new Pursue(npc, agent, anim, player);
+            stage = EVENT.EXIT;
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// This class is responsible for the AI idle state
 public class Idle : State
 {
     // setup inherited constructor

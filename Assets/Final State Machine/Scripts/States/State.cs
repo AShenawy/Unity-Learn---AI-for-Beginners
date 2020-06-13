@@ -19,7 +19,7 @@ public class State
     protected State nextState;  // reference to the AI's next state
 
     private float visDist = 10f;    // distance at which AI 'sees' the player
-    private float visAngle = 30f;   // angle range at which AI can see player in front of it. This value is half the complete view triangle
+    private float visAngle = 45f;   // angle range at which AI can see player in front of it. This value is half the complete view triangle
     private float shootDist = 7f;   // distance at which AI will start attacking/shooting player
     
     // setup class constructor for required components when calling class and/or its children
