@@ -21,9 +21,15 @@ public class Idle : State
 
     public override void Update()
     {
+        // if AI saw the player, then exit idle state and start chasing
+        if (CanSeePlayer())
+        {
+            nextState = new Pursue(npc, agent, anim, player);
+            stage = EVENT.EXIT;
+        }
         // Set a check to exit the Update stage and go to next one (Exit), otherwise will be stuck in Update forever
         // This condition creates 10% chance to exit Update stage
-        if(Random.Range(0, 100) < 10)
+        else if(Random.Range(0, 100) < 10)
         {
             nextState = new Patrol(npc, agent, anim, player);
             stage = EVENT.EXIT;
