@@ -19,7 +19,7 @@ public class State
     protected State nextState;  // reference to the AI's next state
 
     private float visDist = 10f;    // distance at which AI 'sees' the player
-    private float visAngle = 30f;   // angle range at which AI can see player in front of it
+    private float visAngle = 30f;   // angle range at which AI can see player in front of it. This value is half the complete view triangle
     private float shootDist = 7f;   // distance at which AI will start attacking/shooting player
     
     // setup class constructor for required components when calling class and/or its children
@@ -55,5 +55,31 @@ public class State
         }
         
         return this;    // If not exiting the state, return itself
+    }
+
+    public bool CanSeePlayer()
+    {
+        // calculate player location and angle relative to AI character
+        Vector3 direction = player.position - npc.transform.position;
+        float angle = Vector3.Angle(direction, npc.transform.forward);
+
+        // if player is within visibility distance & view angle, then AI can see player
+        if (direction.magnitude < visDist && angle < visAngle)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool CanAttackPlayer()
+    {
+        // calculate how far the player is from AI character
+        float playerDist = (player.position - npc.transform.position).magnitude;
+        
+        if (playerDist < shootDist)     // if player is close enough, AI can shoot them
+            return true;
+
+        return false;
     }
 }
