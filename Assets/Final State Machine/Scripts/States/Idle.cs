@@ -5,15 +5,16 @@ using UnityEngine.AI;
 
 public class Idle : State
 {
+    // setup inherited constructor
     public Idle(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
             : base(_npc, _agent, _anim, _player)
     {
-        name = STATE.IDLE;
+        name = STATE.IDLE;  // set name of this state
     }
 
     public override void Enter()
     {
-        anim.SetTrigger("isIdle");
+        anim.SetTrigger("isIdle");  // trigger the idle animation
         base.Enter();
     }
 
