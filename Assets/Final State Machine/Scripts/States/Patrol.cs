@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,7 +20,24 @@ public class Patrol : State
 
     public override void Enter()
     {
-        currentIndex = 0;       // set the waypoint index to start at beginning of patrol path
+        // make AI start patrol at the nearest waypoint
+        float lastDist = Mathf.Infinity;
+        
+        for (int i = 0; i < GameEnvironment.Singleton.Checkpoints.Count; i++)
+        {
+            GameObject thisWP = GameEnvironment.Singleton.Checkpoints[i];
+
+            // calculate the distance between AI and each waypoint
+            float distance = Vector3.Distance(npc.transform.position, thisWP.transform.position);
+
+            // if distance is less than last calculated distance, make it current index and current last distance to compare against
+            if(distance < lastDist)
+            {
+                currentIndex = i - 1;   // subtract 1 since in Update we already add 1 to current index
+                lastDist = distance;
+            }
+        }
+
         anim.SetTrigger("isWalking");   // trigger the animation for walking
         base.Enter();
     }
