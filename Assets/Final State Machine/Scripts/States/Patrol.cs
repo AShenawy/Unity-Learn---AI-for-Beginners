@@ -26,7 +26,7 @@ public class Patrol : State
     public override void Update()
     {
         // check if npc agent has arrived to a waypoint
-        if(agent.remainingDistance < 1)
+        if (agent.remainingDistance < 1)
         {
             // check if the npc has finished walking through all waypoints
             if (currentIndex >= GameEnvironment.Singleton.Checkpoints.Count - 1)
@@ -37,7 +37,6 @@ public class Patrol : State
             // move the npc agent to waypoint at the current index count
             agent.SetDestination(GameEnvironment.Singleton.Checkpoints[currentIndex].transform.position);
         }
-        base.Update();
     }
 
     public override void Exit()

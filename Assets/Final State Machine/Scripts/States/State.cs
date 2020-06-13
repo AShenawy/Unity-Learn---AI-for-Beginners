@@ -35,7 +35,7 @@ public class State
     // The Enter, Update and Exit methods are meant to be overridden by child classes
     public virtual void Enter() { stage = EVENT.UPDATE; }   // ensure the stage moves to Update after performing all functionality
 
-    public virtual void Update() { stage = EVENT.UPDATE; }  // Update will stay in its own stage until it is forced to move to another stage
+    public virtual void Update() { stage = EVENT.UPDATE; }  // Update should stay running until it is forced to move to another stage
 
     public virtual void Exit() { stage = EVENT.EXIT; }  // ensure the stage is set to Exit when reaching state's end to perform necessary exit behaviour
 
