@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 // This script handles the game environment elements, such as AI patrol path
 public sealed class GameEnvironment
@@ -20,6 +21,9 @@ public sealed class GameEnvironment
                 
                 // fill the checkpoints list with waypoint scene objects tagged Checkpoint
                 instance.checkpoints.AddRange(GameObject.FindGameObjectsWithTag("Checkpoint"));
+
+                // order the list of waypoints ascendingly by name to make AI move in the same sequence
+                instance.checkpoints = instance.checkpoints.OrderBy(waypoint => waypoint.name).ToList();
             }
 
             return instance;
