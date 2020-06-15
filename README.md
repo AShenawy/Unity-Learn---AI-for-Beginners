@@ -1,4 +1,4 @@
-# Unity_Learn_-_AI_for_Beginners
+# Unity Learn - AI for Beginners
 Applying AI concepts in Unity project using C# and Unity's built-in navigational mesh functionality. Currently available systems/patterns:
 * Finite State Machine
 
