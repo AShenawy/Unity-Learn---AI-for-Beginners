@@ -1,6 +1,6 @@
 # Unity Learn - AI for Beginners
 Applying AI concepts in Unity project using C# and Unity's built-in navigational mesh functionality. Currently available systems/patterns:
-* [Finite State Machine](https://github.com/AShenawy/Unity_Learn_-_AI_for_Beginners/tree/Final_State_Machine)
+* [Finite State Machine](https://github.com/AShenawy/Unity_Learn_-_AI_for_Beginners/tree/Finite_State_Machine)
 
 ## Finite State Machine
 A simple but powerful system. When AI behaviour becomes more complex, writing it all down in one class/script can become tangled and messy very quickly. The FSM separates each state the AI is in (idle, patrol, pursue, attack, sleep, etc.) into separate classes, but all derived from the same base class. Each state then acts as a node with links between it and the other states. The AI then moves between these nodes based on checks and the current situation it's in.
